@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.android.volley.VolleyError;
 import com.stephen_browne.githubviewer.Utils.DataAccessObject;
 import com.stephen_browne.githubviewer.Utils.ProfileCallbacks;
+import com.stephen_browne.githubviewer.Utils.ProfilePreparedCallbacks;
+import com.stephen_browne.githubviewer.models.SimpleProfile;
 
 import org.json.JSONObject;
 import org.w3c.dom.Text;
@@ -21,11 +23,13 @@ import org.w3c.dom.Text;
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 
+import static android.R.attr.fragment;
+
 /**
  * Created by steph on 10/15/2017.
  */
 
-public class SearchFragment extends Fragment implements ProfileCallbacks {
+public class SearchFragment extends Fragment implements ProfileCallbacks, ProfilePreparedCallbacks {
     MainActivity mainActivity;
     TextView searchTextView;
     EditText searchEditText;
@@ -68,13 +72,9 @@ public class SearchFragment extends Fragment implements ProfileCallbacks {
 
     @Override
     public void onProfileSuccess(JSONObject profileJSON) {
-        ProfileFragment fragment = new ProfileFragment();
-        fragment.object = profileJSON;
-        FragmentTransaction ft = getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.main_content, fragment, "fragment")
-                .addToBackStack(null);
-        ft.commit();
+
+        SimpleProfile simpleProfile = new SimpleProfile(profileJSON, this, getContext());
+
     }
 
     @Override
@@ -87,6 +87,21 @@ public class SearchFragment extends Fragment implements ProfileCallbacks {
             body = "";
         }
         Log.i("network response date", body);
+    }
+
+    @Override
+    public void onProfilePreparedSuccess(SimpleProfile simpleProfile) {
+        ProfileFragment fragment = new ProfileFragment();
+        fragment.profile = simpleProfile;
+        FragmentTransaction ft = getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.main_content, fragment, "fragment")
+                .addToBackStack(null);
+        ft.commit();
+    }
+
+    @Override
+    public void onProfilePrefaredFailure() {
 
     }
 }

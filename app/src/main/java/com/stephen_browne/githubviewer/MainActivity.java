@@ -17,21 +17,21 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ProfileFragment fragment = new ProfileFragment();
-//        fragment.object = profileJSON;
-        FragmentTransaction ft = getSupportFragmentManager()
-                .beginTransaction()
-                .replace(R.id.main_content, fragment, "fragment")
-                .addToBackStack(null);
-        ft.commit();
-
-
-//        SearchFragment fragment = new SearchFragment();
+//        ProfileFragment fragment = new ProfileFragment();
+////        fragment.object = profileJSON;
 //        FragmentTransaction ft = getSupportFragmentManager()
 //                .beginTransaction()
-//                .add(R.id.main_content, fragment, "fragment")
+//                .replace(R.id.main_content, fragment, "fragment")
 //                .addToBackStack(null);
 //        ft.commit();
+
+
+        SearchFragment fragment = new SearchFragment();
+        FragmentTransaction ft = getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.main_content, fragment, "fragment")
+                .addToBackStack(null);
+        ft.commit();
 
 
 
