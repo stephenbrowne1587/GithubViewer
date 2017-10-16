@@ -52,7 +52,9 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.profile_fragment, container, false);
         profileRV = (RecyclerView) rootView.findViewById(R.id.profile_rv);
-        profileRV.setLayoutManager(new LinearLayoutManager(getContext()));
+        LinearLayoutManager llm = new LinearLayoutManager(getContext());
+        llm.setAutoMeasureEnabled(false);
+        profileRV.setLayoutManager(llm);
 
         ProfileRecyclerViewAdapter adapter = new ProfileRecyclerViewAdapter();
         profileRV.setAdapter(adapter);

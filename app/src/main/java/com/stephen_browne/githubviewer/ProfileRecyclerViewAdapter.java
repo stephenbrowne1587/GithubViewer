@@ -20,6 +20,9 @@ public class ProfileRecyclerViewAdapter extends RecyclerView.Adapter<ProfileRecy
     @Override
     public ProfileViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View inflatedView = LayoutInflater.from(parent.getContext()).inflate(R.layout.profile_list_row, parent, false);
+
+
+
         return new ProfileViewHolder(inflatedView);
     }
 
