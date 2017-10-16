@@ -3,6 +3,8 @@ package com.stephen_browne.githubviewer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,7 +19,8 @@ import org.json.JSONObject;
 public class ProfileFragment extends Fragment {
 
     MainActivity mainActivity;
-    TextView profiletv;
+    RecyclerView profileRV;
+
     JSONObject object;
 
     @Override
@@ -48,8 +51,11 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.profile_fragment, container, false);
-        profiletv = (TextView) rootView.findViewById(R.id.profile_tv);
-        profiletv.setText(object.toString());
+        profileRV = (RecyclerView) rootView.findViewById(R.id.profile_rv);
+        profileRV.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        ProfileRecyclerViewAdapter adapter = new ProfileRecyclerViewAdapter();
+        profileRV.setAdapter(adapter);
         return rootView;
     }
 
