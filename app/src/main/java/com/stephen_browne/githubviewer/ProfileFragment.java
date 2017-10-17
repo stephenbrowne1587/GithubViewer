@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.stephen_browne.githubviewer.Utils.ProfilePreparedCallbacks;
 import com.stephen_browne.githubviewer.models.SimpleProfile;
 
 import org.json.JSONObject;
@@ -59,19 +60,21 @@ public class ProfileFragment extends Fragment {
         profileRV = (RecyclerView) rootView.findViewById(R.id.profile_rv);
         imageView = (ImageView)rootView.findViewById(R.id.profile_imageview);
         collapsingToolbarLayout = (CollapsingToolbarLayout)rootView.findViewById(R.id.collapsing_layout);
-
-
-
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         llm.setAutoMeasureEnabled(false);
         profileRV.setLayoutManager(llm);
+
+        return rootView;
+    }
+
+    public void renderProfile(){
 
         ProfileRecyclerViewAdapter adapter = new ProfileRecyclerViewAdapter();
         profileRV.setAdapter(adapter);
 
         imageView.setImageBitmap(profile.getImage());
         collapsingToolbarLayout.setTitle(profile.getLogin());
-        return rootView;
     }
+
 
 }

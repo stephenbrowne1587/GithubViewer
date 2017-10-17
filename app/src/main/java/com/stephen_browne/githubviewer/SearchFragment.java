@@ -22,6 +22,7 @@ import org.w3c.dom.Text;
 
 import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
+import java.util.List;
 
 import static android.R.attr.fragment;
 
@@ -91,13 +92,27 @@ public class SearchFragment extends Fragment implements ProfileCallbacks, Profil
 
     @Override
     public void onProfilePreparedSuccess(SimpleProfile simpleProfile) {
-        ProfileFragment fragment = new ProfileFragment();
-        fragment.profile = simpleProfile;
-        FragmentTransaction ft = getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.main_content, fragment, "fragment")
-                .addToBackStack(null);
-        ft.commit();
+        mainActivity.loggedIn = true;
+        mainActivity.mSectionsPagerAdapter.notifyDataSetChanged();
+        mainActivity.setupPagerAdapter();
+        mainActivity.setupTabbarIcons();
+        List<Fragment> frags = mainActivity.getSupportFragmentManager().getFragments();
+        for (Fragment frag : frags){
+            if (frag instanceof ProfileFragment){
+                ((ProfileFragment) frag).profile = simpleProfile;
+                ((ProfileFragment) frag).renderProfile();
+            }
+        }
+
+
+
+//        ProfileFragment fragment = new ProfileFragment();
+//        fragment.profile = simpleProfile;
+//        FragmentTransaction ft = getFragmentManager()
+//                .beginTransaction()
+//                .replace(R.id.main_content, fragment, "fragment")
+//                .addToBackStack(null);
+//        ft.commit();
     }
 
     @Override
