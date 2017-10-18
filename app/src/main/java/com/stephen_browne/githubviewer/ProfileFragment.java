@@ -95,7 +95,7 @@ public class ProfileFragment extends Fragment {
 
     public void renderProfile(){
 
-        ProfileRecyclerViewAdapter adapter = new ProfileRecyclerViewAdapter();
+        ProfileRecyclerViewAdapter adapter = new ProfileRecyclerViewAdapter(profile);
         profileRV.setAdapter(adapter);
 
         imageView.setImageBitmap(profile.getImage());
@@ -106,7 +106,10 @@ public class ProfileFragment extends Fragment {
         nameTextView.setText(profile.getName());
         companyTextView.setText(profile.getCompany());
         locationTextView.setText(profile.getLocation());
-        blogTextView.setText(profile.getBlog());
+        if (!profile.getBlog().equals("")){
+            blogTextView.setText(profile.getBlog());
+        }
+
     }
 
 

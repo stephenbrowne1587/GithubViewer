@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.android.volley.VolleyError;
@@ -29,6 +30,7 @@ import java.util.List;
 public class SearchFragment extends Fragment implements ProfileCallbacks, ProfilePreparedCallbacks {
     MainActivity mainActivity;
     TextView searchTextView;
+    private RelativeLayout searchRelativeLayout;
     EditText searchEditText;
 
     private static final String ARG_SECTION_NUMBER = "section_number";
@@ -54,10 +56,10 @@ public class SearchFragment extends Fragment implements ProfileCallbacks, Profil
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.search_fragment, container, false);
-        searchTextView = (TextView) rootView.findViewById(R.id.search_tv);
+        searchRelativeLayout = (RelativeLayout) rootView.findViewById(R.id.search_relative);
         searchEditText = (EditText) rootView.findViewById(R.id.search_edittext);
 
-        searchTextView.setOnClickListener(new View.OnClickListener() {
+        searchRelativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 String username = searchEditText.getText().toString();

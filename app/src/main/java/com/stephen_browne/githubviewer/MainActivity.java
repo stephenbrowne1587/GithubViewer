@@ -20,6 +20,7 @@ public class MainActivity extends AppCompatActivity {
     public SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager viewPager;
     public boolean loggedIn = false;
+    public AppBarLayout mainAppbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         appBarLayout = (AppBarLayout)findViewById(R.id.appbar_layout);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
+        mainAppbar = (AppBarLayout)findViewById(R.id.main_appbar);
 
 
 //        ProfileFragment fragment = new ProfileFragment();
@@ -60,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.getTabAt(0).setIcon(R.drawable.search);
         tabLayout.getTabAt(1).setIcon(R.drawable.profile);
+        mainAppbar.setVisibility(View.VISIBLE);
 
     }
 }

@@ -29,7 +29,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
                 android:id="@+id/profile_content"
-                android:background="@color/veryLightBlack"
+                android:background="@color/lightBlack"
                 >
                 <com.stephen_browne.githubviewer.Utils.CustomImageView
                     android:layout_width="100dp"
@@ -115,7 +115,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:id="@+id/blog_text_view"
-                            android:text="no blog"
+                            android:text="No Website Listed"
                             android:layout_marginLeft="10dp"
                             android:textColor="@color/white"
                             android:textSize="20sp"

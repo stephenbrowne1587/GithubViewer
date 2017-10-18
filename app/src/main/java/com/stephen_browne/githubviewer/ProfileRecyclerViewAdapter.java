@@ -6,15 +6,20 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.stephen_browne.githubviewer.models.Profile;
+
 /**
  * Created by steph on 10/15/2017.
  */
 
 public class ProfileRecyclerViewAdapter extends RecyclerView.Adapter<ProfileRecyclerViewAdapter.ProfileViewHolder> {
 
-    private String[] items = {"repos", "gists", "subscriptions", "stars", "following", "followers" , "another", "and another"};
+    private String[] items = {"Repositories", "Gists",  "Following", "Followers" ,"Stars", "Organizations", "another", "and another"};
+    private Profile profile;
 
-    public ProfileRecyclerViewAdapter(){
+
+    public ProfileRecyclerViewAdapter(Profile profile){
+        this.profile = profile;
     }
 
     @Override
@@ -28,7 +33,7 @@ public class ProfileRecyclerViewAdapter extends RecyclerView.Adapter<ProfileRecy
 
     @Override
     public void onBindViewHolder(ProfileViewHolder holder, int position) {
-        holder.renderInfo(items[position]);
+        holder.renderInfo(position, items,  profile);
 
     }
 
@@ -38,16 +43,36 @@ public class ProfileRecyclerViewAdapter extends RecyclerView.Adapter<ProfileRecy
     }
 
     public static class ProfileViewHolder extends RecyclerView.ViewHolder{
-        TextView itemTextView;
+        private TextView itemTextView;
+        private TextView numberTextView;
 
         public ProfileViewHolder(View itemView) {
             super(itemView);
             itemTextView = (TextView)itemView.findViewById(R.id.profile_item_tv);
+            numberTextView = (TextView) itemView.findViewById(R.id.number_text_view);
 
         }
 
-        public void renderInfo(String item){
-            itemTextView.setText(item);
+        public void renderInfo(int position, String[] items, Profile profile){
+            itemTextView.setText(items[position]);
+            switch (position){
+                case 0:
+                    numberTextView.setText(String.valueOf(profile.getNumRepos()));
+                    break;
+                case 1:
+                    numberTextView.setText(String.valueOf(profile.getNumGists()));
+                    break;
+                case 2:
+                    numberTextView.setText(String.valueOf(profile.getNumFollowing()));
+                    break;
+                case 3:
+                    numberTextView.setText(String.valueOf(profile.getNumFollowers()));
+                    break;
+                default:
+                    numberTextView.setVisibility(View.INVISIBLE);
+            }
+
+
         }
     }
 }
