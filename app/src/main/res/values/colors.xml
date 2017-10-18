@@ -4,7 +4,10 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="lightBlack">#24292E</color>
+    <color name="veryLightBlack">#24292E</color>
+
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
+    <color name="lightGrey">#DFDDD6</color>
 
 </resources>

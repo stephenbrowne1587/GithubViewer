@@ -29,6 +29,10 @@ public class Profile {
     private String name;
     private String company;
     private String location;
+    private String blog;
+
+
+
     private int numRepos;
     private int numGists;
     private int numFollowers;
@@ -48,6 +52,7 @@ public class Profile {
         String name = json.getString("name");
         String company = json.getString("company");
         String location = json.getString("location");
+        String blog = json.getString("blog");
         int numRepos = json.getInt("public_repos");
         int numGists = json.getInt("public_gists");
         int numFollowers = json.getInt("followers");
@@ -73,6 +78,7 @@ public class Profile {
         this.name = name;
         this.company = company;
         this.location = location;
+        this.blog = blog;
         this.numRepos = numRepos;
         this.numGists = numGists;
         this.numFollowers = numFollowers;
@@ -204,5 +210,12 @@ public class Profile {
 
     public void setNumFollowing(int numFollowing) {
         this.numFollowing = numFollowing;
+    }
+    public String getBlog() {
+        return blog;
+    }
+
+    public void setBlog(String blog) {
+        this.blog = blog;
     }
 }
