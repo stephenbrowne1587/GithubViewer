@@ -19,22 +19,20 @@
             app:title="Username"
             app:collapsedTitleGravity="center"
             app:expandedTitleGravity="center|bottom"
-
             app:contentScrim="@color/lightBlack"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="350dp"
                 android:background="@color/lightBlack"
                 >
-                <ImageView
-                    android:layout_width="150dp"
-                    android:layout_height="150dp"
+                <com.stephen_browne.githubviewer.Utils.CustomImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="30dp"
                     android:id="@+id/profile_imageview"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:scaleType="centerInside"
-                    android:background="@drawable/image_border"
+                    android:scaleType="centerCrop"
                     app:layout_collapseMode="parallax"
                     android:src="@drawable/banana"/>
 
@@ -72,6 +70,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/profile_rv"
+            android:layout_marginBottom="50dp"
             android:fitsSystemWindows="true"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             >

@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class ProfileRecyclerViewAdapter extends RecyclerView.Adapter<ProfileRecyclerViewAdapter.ProfileViewHolder> {
 
-    private String[] items = {"repos", "gists", "subscriptions", "stars", "following", "followers" };
+    private String[] items = {"repos", "gists", "subscriptions", "stars", "following", "followers" , "another", "and another"};
 
     public ProfileRecyclerViewAdapter(){
     }
@@ -34,7 +34,7 @@ public class ProfileRecyclerViewAdapter extends RecyclerView.Adapter<ProfileRecy
 
     @Override
     public int getItemCount() {
-        return 6;
+        return 8;
     }
 
     public static class ProfileViewHolder extends RecyclerView.ViewHolder{

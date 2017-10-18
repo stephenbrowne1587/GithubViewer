@@ -10,12 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
-import com.stephen_browne.githubviewer.Utils.ProfilePreparedCallbacks;
-import com.stephen_browne.githubviewer.models.SimpleProfile;
-
-import org.json.JSONObject;
+import com.stephen_browne.githubviewer.Utils.CustomImageView;
+import com.stephen_browne.githubviewer.models.Profile;
 
 /**
  * Created by steph on 10/15/2017.
@@ -25,10 +22,10 @@ public class ProfileFragment extends Fragment {
 
     MainActivity mainActivity;
     RecyclerView profileRV;
-    ImageView imageView;
+    CustomImageView imageView;
     CollapsingToolbarLayout collapsingToolbarLayout;
 
-    SimpleProfile profile;
+    Profile profile;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,7 +55,7 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.profile_fragment, container, false);
         profileRV = (RecyclerView) rootView.findViewById(R.id.profile_rv);
-        imageView = (ImageView)rootView.findViewById(R.id.profile_imageview);
+        imageView = (CustomImageView) rootView.findViewById(R.id.profile_imageview);
         collapsingToolbarLayout = (CollapsingToolbarLayout)rootView.findViewById(R.id.collapsing_layout);
         LinearLayoutManager llm = new LinearLayoutManager(getContext());
         llm.setAutoMeasureEnabled(false);
@@ -74,6 +71,8 @@ public class ProfileFragment extends Fragment {
 
         imageView.setImageBitmap(profile.getImage());
         collapsingToolbarLayout.setTitle(profile.getLogin());
+        collapsingToolbarLayout.setExpandedTitleTextAppearance(R.style.ExpandedAppBar);
+        collapsingToolbarLayout.setCollapsedTitleTextAppearance(R.style.CollapsedAppBar);
     }
 
 

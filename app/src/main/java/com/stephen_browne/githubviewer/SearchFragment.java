@@ -3,7 +3,6 @@ package com.stephen_browne.githubviewer;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,16 +14,13 @@ import com.android.volley.VolleyError;
 import com.stephen_browne.githubviewer.Utils.DataAccessObject;
 import com.stephen_browne.githubviewer.Utils.ProfileCallbacks;
 import com.stephen_browne.githubviewer.Utils.ProfilePreparedCallbacks;
-import com.stephen_browne.githubviewer.models.SimpleProfile;
+import com.stephen_browne.githubviewer.models.Profile;
 
+import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
 import java.util.List;
-
-import static android.R.attr.fragment;
 
 /**
  * Created by steph on 10/15/2017.
@@ -74,7 +70,11 @@ public class SearchFragment extends Fragment implements ProfileCallbacks, Profil
     @Override
     public void onProfileSuccess(JSONObject profileJSON) {
 
-        SimpleProfile simpleProfile = new SimpleProfile(profileJSON, this, getContext());
+        try {
+            Profile profile = new Profile(profileJSON, this, getContext());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -91,7 +91,7 @@ public class SearchFragment extends Fragment implements ProfileCallbacks, Profil
     }
 
     @Override
-    public void onProfilePreparedSuccess(SimpleProfile simpleProfile) {
+    public void onProfilePreparedSuccess(Profile profile) {
         mainActivity.loggedIn = true;
         mainActivity.mSectionsPagerAdapter.notifyDataSetChanged();
         mainActivity.setupPagerAdapter();
@@ -99,7 +99,7 @@ public class SearchFragment extends Fragment implements ProfileCallbacks, Profil
         List<Fragment> frags = mainActivity.getSupportFragmentManager().getFragments();
         for (Fragment frag : frags){
             if (frag instanceof ProfileFragment){
-                ((ProfileFragment) frag).profile = simpleProfile;
+                ((ProfileFragment) frag).profile = profile;
                 ((ProfileFragment) frag).renderProfile();
             }
         }
@@ -107,7 +107,7 @@ public class SearchFragment extends Fragment implements ProfileCallbacks, Profil
 
 
 //        ProfileFragment fragment = new ProfileFragment();
-//        fragment.profile = simpleProfile;
+//        fragment.profile = profile;
 //        FragmentTransaction ft = getFragmentManager()
 //                .beginTransaction()
 //                .replace(R.id.main_content, fragment, "fragment")
