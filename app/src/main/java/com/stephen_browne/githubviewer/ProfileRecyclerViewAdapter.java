@@ -1,5 +1,6 @@
 package com.stephen_browne.githubviewer;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,17 +17,19 @@ public class ProfileRecyclerViewAdapter extends RecyclerView.Adapter<ProfileRecy
 
     private String[] items = {"Repositories", "Gists",  "Following", "Followers" ,"Stars", "Organizations", "another", "and another"};
     private Profile profile;
+    private ProfileOnClickListener clickListener;
+    private MainActivity mainActivity;
 
 
-    public ProfileRecyclerViewAdapter(Profile profile){
+    public ProfileRecyclerViewAdapter(Profile profile, Context context, RecyclerView recyclerView, MainActivity mainActivity){
         this.profile = profile;
+        this.clickListener = new ProfileOnClickListener(context, recyclerView, mainActivity, profile);
     }
 
     @Override
     public ProfileViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View inflatedView = LayoutInflater.from(parent.getContext()).inflate(R.layout.profile_list_row, parent, false);
-
-
+        inflatedView.setOnClickListener(clickListener);
 
         return new ProfileViewHolder(inflatedView);
     }
@@ -52,6 +55,7 @@ public class ProfileRecyclerViewAdapter extends RecyclerView.Adapter<ProfileRecy
             numberTextView = (TextView) itemView.findViewById(R.id.number_text_view);
 
         }
+
 
         public void renderInfo(int position, String[] items, Profile profile){
             itemTextView.setText(items[position]);

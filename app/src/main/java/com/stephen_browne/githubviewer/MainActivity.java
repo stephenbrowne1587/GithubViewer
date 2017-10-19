@@ -13,6 +13,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
 
+import com.stephen_browne.githubviewer.models.Repository;
+
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     private TabLayout tabLayout;
@@ -64,5 +68,13 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.getTabAt(1).setIcon(R.drawable.profile);
         mainAppbar.setVisibility(View.VISIBLE);
 
+    }
+
+    public void profileToRepos(ArrayList<Repository> repos){
+        RepositoriesFragment repositoriesFragment = RepositoriesFragment.newInstance(repos);
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.main_content, repositoriesFragment, "fragment");
+        ft.addToBackStack(null);
+        ft.commit();
     }
 }

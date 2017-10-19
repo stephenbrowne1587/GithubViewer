@@ -6,6 +6,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main_content"
     android:fitsSystemWindows="true"
     tools:context="com.stephen_browne.githubviewer.MainActivity">
 
@@ -23,7 +24,7 @@
     <android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.91"
+        android:layout_weight="0.92"
         android:id="@+id/viewPager"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_gravity="top"
@@ -32,9 +33,10 @@
     <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.09"
+        android:layout_weight="0.08"
         android:id="@+id/main_appbar"
         android:visibility="gone"
+        android:background="@color/lightGrey"
         android:theme="@style/AppTheme.AppBarOverlay"
         >
         <android.support.design.widget.TabLayout

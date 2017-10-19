@@ -95,7 +95,7 @@ public class ProfileFragment extends Fragment {
 
     public void renderProfile(){
 
-        ProfileRecyclerViewAdapter adapter = new ProfileRecyclerViewAdapter(profile);
+        ProfileRecyclerViewAdapter adapter = new ProfileRecyclerViewAdapter(profile, getContext(), profileRV, mainActivity);
         profileRV.setAdapter(adapter);
 
         imageView.setImageBitmap(profile.getImage());

@@ -12,6 +12,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -51,4 +52,29 @@ public class DataAccessObject {
         };
         queue.add(stringRequest);
     }
+
+    public static void getRepos(final Context context, final String url, final RepoCallbacks callbacks) {
+        RequestQueue queue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    callbacks.onRepoSuccess(new JSONArray(response));
+                    Log.i("success", "it worked");
+                } catch (JSONException e) {
+                    callbacks.onRepoSuccess(new JSONArray());
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                callbacks.onRepoFailure(error);
+                Log.i("error", "It didn't work");
+            }
+        }){
+        };
+        queue.add(stringRequest);
+    }
+
 }
